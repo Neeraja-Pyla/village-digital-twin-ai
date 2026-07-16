@@ -14,11 +14,30 @@ export default function Dashboard() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-        <StatsCard />
-        <StatsCard />
-        <StatsCard />
-        <StatsCard />
-      </div>
+  <StatsCard
+    title="Population"
+    value="12,540"
+    color="text-emerald-400"
+  />
+
+  <StatsCard
+    title="Households"
+    value="3,180"
+    color="text-blue-400"
+  />
+
+  <StatsCard
+    title="Schools"
+    value="18"
+    color="text-yellow-400"
+  />
+
+  <StatsCard
+    title="Hospitals"
+    value="4"
+    color="text-pink-400"
+  />
+</div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <RiskScoreCard />

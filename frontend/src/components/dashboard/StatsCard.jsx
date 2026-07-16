@@ -1,17 +1,11 @@
-function StatsCard() {
+export default function StatsCard({ title, value, color }) {
   return (
-    <div className="bg-slate-900 rounded-xl p-6 border border-slate-700">
-      <p className="text-slate-400 text-sm">Population</p>
+    <div className="rounded-xl border border-slate-700 bg-slate-900 p-6 shadow-lg">
+      <p className="text-sm text-slate-400">{title}</p>
 
-      <h2 className="text-3xl font-bold mt-2">
-        12,540
+      <h2 className={`mt-3 text-3xl font-bold ${color}`}>
+        {value}
       </h2>
-
-      <p className="text-green-400 mt-3">
-        ▲ 2.4%
-      </p>
     </div>
   );
 }
-
-export default StatsCard;
