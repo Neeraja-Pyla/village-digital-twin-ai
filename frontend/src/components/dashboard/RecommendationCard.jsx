@@ -1,17 +1,29 @@
-function RecommendationCard() {
+export default function RecommendationCard() {
   return (
-    <div className="bg-slate-900 rounded-xl p-6 border border-slate-700">
-      <h2 className="text-xl font-bold text-emerald-400 mb-4">
-        AI Recommendation
+    <div className="rounded-xl border border-emerald-700 bg-slate-900 p-6 shadow-lg">
+      <h2 className="text-2xl font-bold text-emerald-400">
+        🤖 AI Recommendations
       </h2>
 
-      <p className="text-slate-300 leading-7">
-        Prioritize irrigation support for Zone 3 over the next 7 days.
-        Increase health awareness campaigns in high-risk villages and
-        monitor rainfall forecasts to reduce flood impact.
-      </p>
+      <div className="mt-6 space-y-4">
+
+        <div className="rounded-lg bg-slate-800 p-4">
+          🌾 Increase irrigation support in Zone 3.
+        </div>
+
+        <div className="rounded-lg bg-slate-800 p-4">
+          🚑 Deploy one mobile medical camp this week.
+        </div>
+
+        <div className="rounded-lg bg-slate-800 p-4">
+          🌧 Monitor rainfall for possible flood alerts.
+        </div>
+
+        <div className="rounded-lg bg-slate-800 p-4">
+          📚 Allocate additional teachers to Village School.
+        </div>
+
+      </div>
     </div>
   );
 }
-
-export default RecommendationCard;
