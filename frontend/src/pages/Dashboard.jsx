@@ -1,22 +1,38 @@
-import { Link } from "react-router-dom";
+import StatsCard from "../components/dashboard/StatsCard";
+import RiskScoreCard from "../components/dashboard/RiskScoreCard";
+import RecommendationCard from "../components/dashboard/RecommendationCard";
+import WeatherCard from "../components/dashboard/WeatherCard";
 
-export default function Dashboard() {
+function Dashboard() {
   return (
-    <main className="min-h-screen bg-slate-950 text-white p-10">
-      <h1 className="text-4xl font-bold">
-        Dashboard
-      </h1>
+    <div className="space-y-8">
 
-      <p className="mt-4 text-slate-300">
-        Welcome to Village Digital Twin AI
-      </p>
+      <div>
+        <h1 className="text-4xl font-bold">
+          Village Dashboard
+        </h1>
 
-      <Link
-        to="/"
-        className="inline-block mt-8 rounded-lg bg-blue-600 px-5 py-2 hover:bg-blue-700"
-      >
-        Back Home
-      </Link>
-    </main>
+        <p className="text-slate-400 mt-2">
+          AI-Powered Decision Intelligence
+        </p>
+      </div>
+
+      <div className="grid md:grid-cols-4 gap-6">
+        <StatsCard />
+        <StatsCard />
+        <StatsCard />
+        <StatsCard />
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-6">
+        <RiskScoreCard />
+        <WeatherCard />
+      </div>
+
+      <RecommendationCard />
+
+    </div>
   );
 }
+
+export default Dashboard;
