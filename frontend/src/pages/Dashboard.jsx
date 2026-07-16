@@ -2,6 +2,7 @@ import StatsCard from "../components/dashboard/StatsCard";
 import RiskScoreCard from "../components/dashboard/RiskScoreCard";
 import RecommendationCard from "../components/dashboard/RecommendationCard";
 import WeatherCard from "../components/dashboard/WeatherCard";
+import RiskTrendChart from "../components/charts/RiskTrendChart";
 
 export default function Dashboard() {
   return (
@@ -45,6 +46,9 @@ export default function Dashboard() {
       </div>
 
       <RecommendationCard />
+      <div className="mt-8">
+  <RiskTrendChart />
+</div>
     </div>
   );
 }
