@@ -4,8 +4,11 @@ import RecommendationCard from "../components/dashboard/RecommendationCard";
 import WeatherCard from "../components/dashboard/WeatherCard";
 import RiskTrendChart from "../components/charts/RiskTrendChart";
 import VillageMap from "../components/map/VillageMap";
+import villages from "../data/villages";
 
 export default function Dashboard() {
+
+const village = villages[0];
   return (
     <div className="space-y-8">
       <div>
@@ -16,29 +19,31 @@ export default function Dashboard() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+
   <StatsCard
     title="Population"
-    value="12,540"
+    value={village.population}
     color="text-emerald-400"
   />
 
   <StatsCard
     title="Households"
-    value="3,180"
+    value={village.households}
     color="text-blue-400"
   />
 
   <StatsCard
-    title="Schools"
-    value="18"
+    title="Crop"
+    value={village.crop}
     color="text-yellow-400"
   />
 
   <StatsCard
-    title="Hospitals"
-    value="4"
-    color="text-pink-400"
+    title="Risk"
+    value={village.risk}
+    color="text-red-400"
   />
+
 </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
