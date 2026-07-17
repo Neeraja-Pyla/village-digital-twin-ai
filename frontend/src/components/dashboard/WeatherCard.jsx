@@ -1,30 +1,26 @@
-export default function WeatherCard() {
+export default function WeatherCard({ village }) {
   return (
-    <div className="rounded-xl bg-gradient-to-br from-sky-600 to-blue-900 p-6 shadow-lg">
+    <div className="bg-sky-900 rounded-xl p-6 shadow-lg">
       <h2 className="text-xl font-bold text-white">
-        Weather Intelligence
+        Weather Forecast
       </h2>
 
-      <div className="mt-6 flex items-center justify-between">
-        <div>
-          <h1 className="text-5xl font-bold text-white">
-            31°C
-          </h1>
+      <p className="mt-6 text-5xl font-bold text-white">
+        {village.temperature}°C
+      </p>
 
-          <p className="mt-2 text-sky-100">
-            Sunny
-          </p>
-        </div>
+      <p className="mt-2 text-sky-200">
+        {village.weather}
+      </p>
 
-        <div className="text-6xl">
-          ☀️
-        </div>
-      </div>
+      <div className="mt-6">
+        <p className="text-sm text-sky-300">
+          Crop
+        </p>
 
-      <div className="mt-6 space-y-2 text-sky-100">
-        <p>💧 Humidity : 68%</p>
-        <p>🌧 Rain Chance : 25%</p>
-        <p>💨 Wind : 12 km/h</p>
+        <p className="text-xl font-semibold text-white">
+          {village.crop}
+        </p>
       </div>
     </div>
   );

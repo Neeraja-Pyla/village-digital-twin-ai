@@ -1,29 +1,27 @@
-export default function RecommendationCard() {
+export default function RecommendationCard({ village }) {
+
+  let recommendation = "";
+
+  if (village.risk >= 80) {
+    recommendation =
+      "Deploy emergency response teams. Increase healthcare support and monitor rainfall continuously.";
+  } else if (village.risk >= 60) {
+    recommendation =
+      "Increase irrigation monitoring and conduct awareness campaigns.";
+  } else {
+    recommendation =
+      "Village conditions are stable. Continue routine monitoring.";
+  }
+
   return (
-    <div className="rounded-xl border border-emerald-700 bg-slate-900 p-6 shadow-lg">
-      <h2 className="text-2xl font-bold text-emerald-400">
-        🤖 AI Recommendations
+    <div className="bg-slate-900 rounded-xl p-6 border border-slate-700">
+      <h2 className="text-xl font-bold text-emerald-400 mb-4">
+        AI Recommendation
       </h2>
 
-      <div className="mt-6 space-y-4">
-
-        <div className="rounded-lg bg-slate-800 p-4">
-          🌾 Increase irrigation support in Zone 3.
-        </div>
-
-        <div className="rounded-lg bg-slate-800 p-4">
-          🚑 Deploy one mobile medical camp this week.
-        </div>
-
-        <div className="rounded-lg bg-slate-800 p-4">
-          🌧 Monitor rainfall for possible flood alerts.
-        </div>
-
-        <div className="rounded-lg bg-slate-800 p-4">
-          📚 Allocate additional teachers to Village School.
-        </div>
-
-      </div>
+      <p className="text-slate-300 leading-8">
+        {recommendation}
+      </p>
     </div>
   );
 }

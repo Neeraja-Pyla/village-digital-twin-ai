@@ -7,6 +7,9 @@ import VillageMap from "../components/map/VillageMap";
 import villages from "../data/villages";
 import { useState } from "react";
 import VillageSelector from "../components/dashboard/VillageSelector";
+import VillageDetails from "../components/dashboard/VillageDetails";
+
+
 
 
 export default function Dashboard() {
@@ -62,15 +65,22 @@ const [selectedVillage, setSelectedVillage] = useState(villages[0]);
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <RiskScoreCard village={selectedVillage} />
-        <WeatherCard />
+        <WeatherCard village={selectedVillage} />
       </div>
 
-      <RecommendationCard />
+      <RecommendationCard village={selectedVillage} />
+
+      <VillageDetails village={selectedVillage} />
+
       <div className="mt-8">
   <RiskTrendChart />
   <div className="mt-8">
-  <VillageMap />
 
+  <VillageMap
+  villages={villages}
+  selectedVillage={selectedVillage}
+  setSelectedVillage={setSelectedVillage}
+/>
 </div>
 </div>
     </div>

@@ -1,7 +1,11 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 
-export default function VillageMap() {
+export default function VillageMap({
+  villages,
+  selectedVillage,
+  setSelectedVillage,
+}) {
   return (
     <div className="rounded-xl overflow-hidden shadow-lg">
       <h2 className="bg-slate-900 text-white text-2xl font-bold p-5">
@@ -18,15 +22,30 @@ export default function VillageMap() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        <Marker position={[14.4426, 79.9865]}>
-          <Popup>
-            <strong>Village Alpha</strong>
-            <br />
-            Risk Score: 84
-            <br />
-            Population: 12,540
-          </Popup>
-        </Marker>
+        {villages.map((village) => (
+ <Marker
+  key={village.id}
+  position={[village.lat, village.lng]}
+  eventHandlers={{
+    click: () => setSelectedVillage(village),
+  }}
+>
+    <Popup>
+  <strong>
+    {village.name}
+    {selectedVillage.id === village.id ? " ⭐" : ""}
+  </strong>
+
+  <br />
+
+  Population: {village.population}
+
+  <br />
+
+  Risk: {village.risk}
+</Popup>
+  </Marker>
+))}
       </MapContainer>
     </div>
   );
