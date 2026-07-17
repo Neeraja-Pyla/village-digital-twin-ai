@@ -1,68 +1,45 @@
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Tooltip,
-  Legend,
-} from "chart.js";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
 
-import { Line } from "react-chartjs-2";
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Tooltip,
-  Legend
-);
-
-const data = {
-  labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-  datasets: [
-    {
-      label: "Flood Risk",
-      data: [30, 42, 38, 55, 70, 84, 65],
-      borderColor: "#22c55e",
-      backgroundColor: "#22c55e",
-      tension: 0.4,
-    },
-  ],
-};
-
-const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      labels: {
-        color: "white",
-      },
-    },
-  },
-  scales: {
-    x: {
-      ticks: {
-        color: "white",
-      },
-    },
-    y: {
-      ticks: {
-        color: "white",
-      },
-    },
-  },
-};
-
-export default function RiskTrendChart() {
+export default function VillageMap() {
   return (
-    <div className="rounded-xl bg-slate-900 p-6 shadow-lg">
-      <h2 className="text-2xl font-bold mb-6 text-white">
-        Weekly Flood Risk Trend
+    <div className="rounded-xl overflow-hidden shadow-lg">
+      <h2 className="bg-slate-900 text-white text-2xl font-bold p-5">
+        Village Digital Twin Map
       </h2>
 
-      <Line data={data} options={options} />
+      <MapContainer
+        center={[14.4426, 79.9865]}
+        zoom={11}
+        style={{
+          height: "500px",
+          width: "100%",
+        }}
+      >
+        <TileLayer
+          attribution="© OpenStreetMap contributors"
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+
+        <Marker position={[14.4426, 79.9865]}>
+          <Popup>
+            <strong>Village Alpha</strong>
+
+            <br />
+
+            Risk Score : 84
+
+            <br />
+
+            Population : 12,540
+
+            <br />
+
+            Crop Health : Good
+          </Popup>
+        </Marker>
+
+      </MapContainer>
     </div>
   );
 }
