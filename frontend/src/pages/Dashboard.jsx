@@ -5,10 +5,14 @@ import WeatherCard from "../components/dashboard/WeatherCard";
 import RiskTrendChart from "../components/charts/RiskTrendChart";
 import VillageMap from "../components/map/VillageMap";
 import villages from "../data/villages";
+import { useState } from "react";
+import VillageSelector from "../components/dashboard/VillageSelector";
+
 
 export default function Dashboard() {
 
-const village = villages[0];
+const [selectedVillage, setSelectedVillage] = useState(villages[0]);
+
   return (
     <div className="space-y-8">
       <div>
@@ -18,36 +22,46 @@ const village = villages[0];
         </p>
       </div>
 
+
+<VillageSelector
+  villages={villages}
+  selectedVillage={selectedVillage}
+  setSelectedVillage={setSelectedVillage}
+/>
+
+
+
+
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
 
   <StatsCard
     title="Population"
-    value={village.population}
+    value={selectedVillage.population}
     color="text-emerald-400"
   />
 
   <StatsCard
     title="Households"
-    value={village.households}
+    value={selectedVillage.households}
     color="text-blue-400"
   />
 
   <StatsCard
     title="Crop"
-    value={village.crop}
+    value={selectedVillage.crop}
     color="text-yellow-400"
   />
 
   <StatsCard
     title="Risk"
-    value={village.risk}
+    value={selectedVillage.risk}
     color="text-red-400"
   />
 
 </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <RiskScoreCard />
+        <RiskScoreCard village={selectedVillage} />
         <WeatherCard />
       </div>
 
@@ -56,6 +70,7 @@ const village = villages[0];
   <RiskTrendChart />
   <div className="mt-8">
   <VillageMap />
+
 </div>
 </div>
     </div>
