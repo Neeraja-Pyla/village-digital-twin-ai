@@ -4,8 +4,8 @@ import RecommendationCard from "../components/dashboard/RecommendationCard";
 import WeatherCard from "../components/dashboard/WeatherCard";
 import RiskTrendChart from "../components/charts/RiskTrendChart";
 import VillageMap from "../components/map/VillageMap";
-import villages from "../data/villages";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import api from "../services/api";
 import VillageSelector from "../components/dashboard/VillageSelector";
 import VillageDetails from "../components/dashboard/VillageDetails";
 
@@ -14,7 +14,62 @@ import VillageDetails from "../components/dashboard/VillageDetails";
 
 export default function Dashboard() {
 
-const [selectedVillage, setSelectedVillage] = useState(villages[0]);
+const [villages, setVillages] = useState([]);
+const [selectedVillage, setSelectedVillage] = useState(null);
+const [prediction, setPrediction] = useState(null);
+ useEffect(() => {
+  console.log("Fetching villages...");
+
+  api.get("/villages")
+    .then((response) => {
+      console.log("API Response:", response.data);
+
+      setVillages(response.data);
+      setSelectedVillage(response.data[0]);
+    })
+    .catch((error) => {
+      console.error("API Error:", error);
+    });
+}, []);
+
+
+
+useEffect(() => {
+  if (!selectedVillage) return;
+
+  api.post("/predict", {
+    risk: selectedVillage.risk,
+  })
+    .then((response) => {
+      setPrediction(response.data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
+}, [selectedVillage]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+if (!selectedVillage) {
+  return (
+    <div className="text-white p-10 text-2xl">
+      Loading...
+    </div>
+  );
+}
+
+
 
   return (
     <div className="space-y-8">
@@ -68,7 +123,7 @@ const [selectedVillage, setSelectedVillage] = useState(villages[0]);
         <WeatherCard village={selectedVillage} />
       </div>
 
-      <RecommendationCard village={selectedVillage} />
+      <RecommendationCard prediction={prediction} />
 
       <VillageDetails village={selectedVillage} />
 

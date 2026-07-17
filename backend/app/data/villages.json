@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Village Alpha",
+    "population": 12540,
+    "households": 3180,
+    "risk": 84,
+    "weather": "Sunny",
+    "temperature": 31,
+    "crop": "Rice",
+    "lat": 14.4426,
+    "lng": 79.9865
+  },
+  {
+    "id": 2,
+    "name": "Village Beta",
+    "population": 8900,
+    "households": 2100,
+    "risk": 52,
+    "weather": "Cloudy",
+    "temperature": 28,
+    "crop": "Groundnut",
+    "lat": 14.465,
+    "lng": 80.01
+  },
+  {
+    "id": 3,
+    "name": "Village Gamma",
+    "population": 15420,
+    "households": 4010,
+    "risk": 91,
+    "weather": "Rain",
+    "temperature": 26,
+    "crop": "Cotton",
+    "lat": 14.41,
+    "lng": 79.95
+  }
+]
