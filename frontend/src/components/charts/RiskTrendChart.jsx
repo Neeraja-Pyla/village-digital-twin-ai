@@ -1,45 +1,81 @@
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Tooltip,
+  Legend,
+} from "chart.js";
 
-export default function VillageMap() {
+import { Line } from "react-chartjs-2";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Tooltip,
+  Legend
+);
+
+export default function RiskTrendChart() {
+  const data = {
+    labels: [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun",
+    ],
+    datasets: [
+      {
+        label: "Village Risk Score",
+        data: [62, 68, 70, 74, 72, 81, 84],
+        borderColor: "#22c55e",
+        backgroundColor: "#22c55e",
+        tension: 0.4,
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        labels: {
+          color: "white",
+        },
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: "white",
+        },
+      },
+      y: {
+        ticks: {
+          color: "white",
+        },
+        min: 0,
+        max: 100,
+      },
+    },
+  };
+
   return (
-    <div className="rounded-xl overflow-hidden shadow-lg">
-      <h2 className="bg-slate-900 text-white text-2xl font-bold p-5">
-        Village Digital Twin Map
+    <div className="bg-slate-900 rounded-xl p-6">
+      <h2 className="text-2xl font-bold mb-6 text-white">
+        Weekly Risk Trend
       </h2>
 
-      <MapContainer
-        center={[14.4426, 79.9865]}
-        zoom={11}
-        style={{
-          height: "500px",
-          width: "100%",
-        }}
-      >
-        <TileLayer
-          attribution="© OpenStreetMap contributors"
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-
-        <Marker position={[14.4426, 79.9865]}>
-          <Popup>
-            <strong>Village Alpha</strong>
-
-            <br />
-
-            Risk Score : 84
-
-            <br />
-
-            Population : 12,540
-
-            <br />
-
-            Crop Health : Good
-          </Popup>
-        </Marker>
-
-      </MapContainer>
+      <Line
+        data={data}
+        options={options}
+      />
     </div>
   );
 }
