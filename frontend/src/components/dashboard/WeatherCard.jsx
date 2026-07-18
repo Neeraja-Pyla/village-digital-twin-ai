@@ -1,68 +1,39 @@
 export default function WeatherCard({ village }) {
-
-  const humidity =
-    village.temperature >= 33
-      ? 48
-      : village.temperature >= 30
-      ? 61
-      : 76;
-
-  const wind =
-    village.temperature >= 33
-      ? 12
-      : village.temperature >= 30
-      ? 9
-      : 6;
-
-  const rainChance =
-    village.weather === "Rain"
-      ? 90
-      : village.weather === "Cloudy"
-      ? 45
-      : 15;
-
   return (
-    <div className="bg-slate-900 rounded-xl p-4 shadow-lg border border-slate-700">
+    <div className="bg-slate-900 rounded-2xl border border-slate-700 p-6 shadow-lg h-full">
 
-      <h2 className="text-xl font-bold text-white">
-        Weather
+      <h2 className="text-xl font-bold text-white mb-6">
+        🌤 Weather Overview
       </h2>
 
-      <div className="mt-5 space-y-4 text-slate-300">
+      <div className="grid grid-cols-2 gap-5">
 
-        <div className="flex justify-between">
-          <span>Condition</span>
-          <span className="font-semibold">
+        <div className="bg-slate-800 rounded-xl p-4">
+          <p className="text-slate-400 text-sm">Condition</p>
+          <p className="text-2xl font-bold text-yellow-400 mt-2">
             {village.weather}
-          </span>
+          </p>
         </div>
 
-        <div className="flex justify-between">
-          <span>Temperature</span>
-          <span className="font-semibold">
+        <div className="bg-slate-800 rounded-xl p-4">
+          <p className="text-slate-400 text-sm">Temperature</p>
+          <p className="text-2xl font-bold text-red-400 mt-2">
             {village.temperature}°C
-          </span>
+          </p>
         </div>
 
-        <div className="flex justify-between">
-          <span>Humidity</span>
-          <span className="font-semibold">
-            {humidity}%
-          </span>
+        <div className="bg-slate-800 rounded-xl p-4">
+          <p className="text-slate-400 text-sm">Crop</p>
+          <p className="text-xl font-bold text-green-400 mt-2">
+            {village.crop}
+          </p>
         </div>
 
-        <div className="flex justify-between">
-          <span>Wind Speed</span>
-          <span className="font-semibold">
-            {wind} km/h
-          </span>
-        </div>
-
-        <div className="flex justify-between">
-          <span>Rain Chance</span>
-          <span className="font-semibold">
-            {rainChance}%
-          </span>
+        <div className="bg-slate-800 rounded-xl p-4">
+          <p className="text-slate-400 text-sm">Risk</p>
+          <p className="text-xl font-bold text-cyan-400 mt-2">
+            {village.risk}
+          </p>
         </div>
 
       </div>

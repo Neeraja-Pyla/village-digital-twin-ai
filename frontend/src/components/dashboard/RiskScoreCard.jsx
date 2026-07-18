@@ -1,63 +1,47 @@
-export default function RiskScoreCard({ village }) {
-  const riskLevel =
-    village.risk >= 80
-      ? "Critical"
-      : village.risk >= 60
-      ? "Moderate"
-      : "Safe";
+return (
 
-  const riskColor =
-    village.risk >= 80
-      ? "text-red-400"
-      : village.risk >= 60
-      ? "text-yellow-400"
-      : "text-green-400";
+<div className="bg-slate-900 rounded-2xl border border-slate-700 p-6 shadow-lg h-full">
 
-  const confidence = Math.min(
-    99,
-    Math.max(85, village.risk + 10)
-  );
+<h2 className="text-xl font-bold text-white">
+Village Risk Score
+</h2>
 
-  const trend =
-    village.risk >= 80
-      ? "Increasing"
-      : village.risk >= 60
-      ? "Stable"
-      : "Decreasing";
+<div className="mt-8 flex justify-center">
 
-  return (
-    <div className="bg-slate-900 rounded-xl p-4 shadow-lg border border-slate-700">
-
-      <h2 className="text-xl font-bold text-white">
-        Risk Assessment
-      </h2>
-
-      <p className="text-4xl font-bold mt-5 text-red-400">
-        {village.risk}
-      </p>
-
-      <p className={`mt-3 text-xl font-semibold ${riskColor}`}>
-        {riskLevel}
-      </p>
-
-      <div className="mt-6 space-y-3 text-slate-300">
-
-        <div className="flex justify-between">
-          <span>AI Confidence</span>
-          <span className="font-bold">
-            {confidence}%
-          </span>
-        </div>
-
-        <div className="flex justify-between">
-          <span>Trend</span>
-          <span className="font-bold">
-            {trend}
-          </span>
-        </div>
-
-      </div>
-
-    </div>
-  );
+<div
+className={`
+w-36 h-36 rounded-full
+flex items-center justify-center
+text-5xl font-bold
+border-8
+${
+village.risk>=80
+? "border-red-500 text-red-400"
+: village.risk>=60
+? "border-yellow-400 text-yellow-400"
+: "border-green-500 text-green-400"
 }
+`}
+>
+
+{village.risk}
+
+</div>
+
+</div>
+
+<p className="text-center mt-6 text-xl font-semibold">
+
+{
+village.risk>=80
+? "🔴 Critical Risk"
+: village.risk>=60
+? "🟡 Moderate Risk"
+: "🟢 Low Risk"
+}
+
+</p>
+
+</div>
+
+);

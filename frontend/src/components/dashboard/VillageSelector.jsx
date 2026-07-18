@@ -24,7 +24,7 @@ export default function VillageSelector({
   key={village.id}
   value={village.id}
 >
-  {village.name} - {village.state}
+  {village.name} - {village.district}, {village.state}
 </option>
         ))}
       </select>

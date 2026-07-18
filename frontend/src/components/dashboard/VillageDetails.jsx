@@ -1,42 +1,51 @@
 export default function VillageDetails({ village }) {
   return (
-    <div className="bg-slate-900 rounded-xl p-4 border border-slate-700">
-      <h2 className="text-xl font-bold mb-5">
-        {village.name}
+    <div className="bg-slate-900 rounded-2xl border border-slate-700 p-6 shadow-lg h-full">
+
+      <h2 className="text-xl font-bold text-white mb-6">
+        📋 Village Details
       </h2>
-      
 
+      <div className="space-y-4">
 
+        <div className="flex justify-between border-b border-slate-700 pb-2">
+          <span className="text-slate-400">Village</span>
+          <span className="text-white font-semibold">{village.name}</span>
+        </div>
 
+        <div className="flex justify-between border-b border-slate-700 pb-2">
+          <span className="text-slate-400">District</span>
+          <span className="text-white">{village.district}</span>
+        </div>
 
-      <p>
-  <strong>State:</strong> {village.state}
-</p>
+        <div className="flex justify-between border-b border-slate-700 pb-2">
+          <span className="text-slate-400">State</span>
+          <span className="text-white">{village.state}</span>
+        </div>
 
-<p>
-  <strong>District:</strong> {village.district}
-</p>
+        <div className="flex justify-between border-b border-slate-700 pb-2">
+          <span className="text-slate-400">Population</span>
+          <span className="text-white">
+            {village.population.toLocaleString()}
+          </span>
+        </div>
 
+        <div className="flex justify-between border-b border-slate-700 pb-2">
+          <span className="text-slate-400">Households</span>
+          <span className="text-white">
+            {village.households.toLocaleString()}
+          </span>
+        </div>
 
+        <div className="flex justify-between">
+          <span className="text-slate-400">Crop</span>
+          <span className="text-green-400 font-semibold">
+            {village.crop}
+          </span>
+        </div>
 
+      </div>
 
-      <p>👥 Population: {village.population}</p>
-
-      <p className="mt-2">
-        🏠 Households: {village.households}
-      </p>
-
-      <p className="mt-2">
-        🌾 Crop: {village.crop}
-      </p>
-
-      <p className="mt-2">
-        🌦 Weather: {village.weather}
-      </p>
-
-      <p className="mt-2">
-        ⚠ Risk Score: {village.risk}
-      </p>
     </div>
   );
 }

@@ -99,19 +99,21 @@ if (!selectedVillage) {
     </p>
   </div>
 
-  <div className="bg-slate-900 rounded-xl p-4 shadow-lg">
-    <p className="text-green-400">
-      🟢 Backend Connected
-    </p>
+  <div className="bg-slate-900 rounded-xl p-5 shadow-lg border border-slate-700">
 
-    <p className="text-green-400">
-      🟢 AI Prediction Active
-    </p>
+  <p className="text-green-400">🟢 Backend Connected</p>
 
-    <p className="text-cyan-400">
-      🌍 {villages.length} Villages Loaded
-    </p>
-  </div>
+  <p className="text-green-400 mt-2">🤖 AI Model Active</p>
+
+  <p className="text-cyan-400 mt-2">
+    🌍 {villages.length} Villages Loaded
+  </p>
+
+  <p className="text-slate-300 mt-2">
+    📅 Last Updated: Today
+  </p>
+
+</div>
 
 </div>
     
@@ -180,6 +182,8 @@ if (!selectedVillage) {
   village={selectedVillage}
   prediction={prediction}
 />
+
+
       <VillageDetails village={selectedVillage} />
 
     </div>
