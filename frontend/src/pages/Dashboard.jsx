@@ -9,6 +9,15 @@ import api from "../services/api";
 import VillageSelector from "../components/dashboard/VillageSelector";
 import VillageDetails from "../components/dashboard/VillageDetails";
 
+import SearchVillage from "../components/dashboard/SearchVillage";
+
+import ExecutiveSummary from "../components/dashboard/ExecutiveSummary";
+
+
+
+
+
+
 
 
 
@@ -22,13 +31,13 @@ const [prediction, setPrediction] = useState(null);
 
   api.get("/villages")
     .then((response) => {
-      console.log("API Response:", response.data);
+      
 
       setVillages(response.data);
       setSelectedVillage(response.data[0]);
     })
     .catch((error) => {
-      console.error("API Error:", error);
+      
     });
 }, []);
 
@@ -37,9 +46,12 @@ const [prediction, setPrediction] = useState(null);
 useEffect(() => {
   if (!selectedVillage) return;
 
-  api.post("/predict", {
-    risk: selectedVillage.risk,
-  })
+  api.post("/predict",{
+    population:selectedVillage.population,
+    households:selectedVillage.households,
+    temperature:selectedVillage.temperature,
+    risk:selectedVillage.risk
+})
     .then((response) => {
       setPrediction(response.data);
     })
@@ -72,35 +84,64 @@ if (!selectedVillage) {
 
 
   return (
-    <div className="space-y-8">
-      <div>
-        <h1 className="text-4xl font-bold">Village Dashboard</h1>
-        <p className="text-slate-400 mt-2">
-          AI-Powered Decision Intelligence
-        </p>
-      </div>
+  <div className="space-y-6">
 
+    {/* Header */}
+    <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
 
-<VillageSelector
-  villages={villages}
-  selectedVillage={selectedVillage}
-  setSelectedVillage={setSelectedVillage}
-/>
+  <div>
+    <h1 className="text-4xl font-bold text-white">
+      Village Digital Twin AI
+    </h1>
 
+    <p className="text-slate-400">
+      AI Powered Rural Intelligence Dashboard
+    </p>
+  </div>
 
+  <div className="bg-slate-900 rounded-xl p-4 shadow-lg">
+    <p className="text-green-400">
+      🟢 Backend Connected
+    </p>
 
+    <p className="text-green-400">
+      🟢 AI Prediction Active
+    </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+    <p className="text-cyan-400">
+      🌍 {villages.length} Villages Loaded
+    </p>
+  </div>
+
+</div>
+    
+
+    {/* Search + Selector */}
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <SearchVillage
+        villages={villages}
+        setSelectedVillage={setSelectedVillage}
+      />
+
+      <VillageSelector
+        villages={villages}
+        selectedVillage={selectedVillage}
+        setSelectedVillage={setSelectedVillage}
+      />
+    </div>
+
+    {/* Stats */}
+    <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
 
   <StatsCard
     title="Population"
-    value={selectedVillage.population}
+    value={selectedVillage.population.toLocaleString()}
     color="text-emerald-400"
   />
 
   <StatsCard
     title="Households"
-    value={selectedVillage.households}
+    value={selectedVillage.households.toLocaleString()}
     color="text-blue-400"
   />
 
@@ -111,33 +152,59 @@ if (!selectedVillage) {
   />
 
   <StatsCard
-    title="Risk"
+    title="Risk Score"
     value={selectedVillage.risk}
     color="text-red-400"
   />
 
 </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <RiskScoreCard village={selectedVillage} />
-        <WeatherCard village={selectedVillage} />
-      </div>
 
-      <RecommendationCard prediction={prediction} />
 
+
+
+
+    {/* Risk + Weather */}
+    <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
+
+      <RiskScoreCard village={selectedVillage} />
+
+      <WeatherCard village={selectedVillage} />
+
+    </div>
+
+    {/* AI + Details */}
+    <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
+
+     <RecommendationCard
+  village={selectedVillage}
+  prediction={prediction}
+/>
       <VillageDetails village={selectedVillage} />
 
-      <div className="mt-8">
-  <RiskTrendChart />
-  <div className="mt-8">
-
-  <VillageMap
-  villages={villages}
-  selectedVillage={selectedVillage}
-  setSelectedVillage={setSelectedVillage}
-/>
-</div>
-</div>
     </div>
-  );
+
+    {/* Charts */}
+    <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
+
+  <div className="xl:col-span-2">
+    <RiskTrendChart villages={villages} />
+  </div>
+
+  <ExecutiveSummary villages={villages} />
+
+</div> 
+
+
+
+
+    {/* Map */}
+    <VillageMap
+      villages={villages}
+      selectedVillage={selectedVillage}
+      setSelectedVillage={setSelectedVillage}
+    />
+
+  </div>
+);
 }

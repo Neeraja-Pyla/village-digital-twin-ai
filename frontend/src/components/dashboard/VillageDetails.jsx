@@ -1,9 +1,24 @@
 export default function VillageDetails({ village }) {
   return (
-    <div className="bg-slate-900 rounded-xl p-6 border border-slate-700">
-      <h2 className="text-2xl font-bold mb-5">
+    <div className="bg-slate-900 rounded-xl p-4 border border-slate-700">
+      <h2 className="text-xl font-bold mb-5">
         {village.name}
       </h2>
+      
+
+
+
+
+      <p>
+  <strong>State:</strong> {village.state}
+</p>
+
+<p>
+  <strong>District:</strong> {village.district}
+</p>
+
+
+
 
       <p>👥 Population: {village.population}</p>
 

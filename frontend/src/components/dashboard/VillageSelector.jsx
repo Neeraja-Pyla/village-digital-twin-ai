@@ -21,11 +21,11 @@ export default function VillageSelector({
       >
         {villages.map((village) => (
           <option
-            key={village.id}
-            value={village.id}
-          >
-            {village.name}
-          </option>
+  key={village.id}
+  value={village.id}
+>
+  {village.name} - {village.state}
+</option>
         ))}
       </select>
     </div>

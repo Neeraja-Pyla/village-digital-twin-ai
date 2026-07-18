@@ -1,32 +1,40 @@
 from fastapi import APIRouter
+import joblib
 
 router = APIRouter()
+
+model = joblib.load("app/ml/model.pkl")
 
 @router.post("/predict")
 def predict(village: dict):
 
-    risk = village["risk"]
+    X = [[
+        village["population"],
+        village["households"],
+        village["temperature"],
+        village["risk"]
+    ]]
 
-    if risk >= 80:
-        prediction = "Critical"
-        recommendation = (
-            "Deploy emergency response teams, increase healthcare support, "
-            "and monitor rainfall continuously."
-        )
+    prediction = model.predict(X)[0]
+    probability = max(model.predict_proba(X)[0]) * 100
 
-    elif risk >= 60:
-        prediction = "Moderate"
-        recommendation = (
-            "Increase irrigation monitoring and conduct awareness campaigns."
-        )
 
-    else:
-        prediction = "Safe"
-        recommendation = (
-            "Village conditions are stable. Continue routine monitoring."
-        )
+    labels = {
+        0:"Safe",
+        1:"Moderate",
+        2:"Critical"
+    }
+
+    recommendations = {
+        0:"Routine monitoring is sufficient.",
+        1:"Increase irrigation monitoring and healthcare awareness.",
+        2:"Immediate intervention recommended. Monitor floods, healthcare, and crop damage."
+    }
 
     return {
-        "prediction": prediction,
-        "recommendation": recommendation
-    }
+    "prediction": labels[prediction],
+    "recommendation": recommendations[prediction],
+    "confidence": round(probability, 2)
+}
+
+

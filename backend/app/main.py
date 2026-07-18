@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.routes.villages import router as village_router
 from app.routes.predict import router as predict_router
+from app.routes.stats import router as stats_router
 
 
 
@@ -22,6 +23,15 @@ app.add_middleware(
 
 app.include_router(village_router)
 app.include_router(predict_router)
+app.include_router(stats_router)
+
+
+
+
+
+
+
+
 
 @app.get("/")
 def home():
