@@ -12,17 +12,21 @@ Built for **IDEA2IMPACT Hackathon 2026**.
 
 Frontend
 
-https://YOUR-VERCEL-LINK.vercel.app
+https://village-digital-twin-ai.vercel.app
 
 Backend API
 
-https://YOUR-RAILWAY-LINK.up.railway.app
 
+https://village-digital-twin-ai-production.up.railway.app
 ---
 
 # 📸 Dashboard
 
-(Add 2-3 screenshots here after deployment)
+
+<img width="1917" height="972" alt="image" src="https://github.com/user-attachments/assets/71990d00-0653-4422-96e5-2c158cc46ddc" />
+<img width="1907" height="966" alt="image" src="https://github.com/user-attachments/assets/581ad7e4-8ca2-47b5-991e-d9c67265c4ac" />
+<img width="1917" height="971" alt="image" src="https://github.com/user-attachments/assets/73d8ad59-cf53-4ae3-8450-2d016a55d283" />
+<img width="1917" height="967" alt="image" src="https://github.com/user-attachments/assets/4f4fb569-5542-4436-8942-b835ed5ce990" />
 
 ---
 
