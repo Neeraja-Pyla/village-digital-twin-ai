@@ -17,7 +17,7 @@ https://village-digital-twin-ai.vercel.app
 Backend API
 
 
-https://village-digital-twin-ai-production.up.railway.app
+https://village-digital-twin-ai.onrender.com
 ---
 
 # 📸 Dashboard
